@@ -1,0 +1,21 @@
+name: Build Wingo Tracker APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Extract project ZIP
+        run: |
+          unzip -o WingoTrackerAndroid_BuildReady.zip -d project
+          find project -type f | head -100
+
+      - name: Show project structure
+        run: |
+          find project -name gradlew -o -name settings.gradle -o -name settings.gradle.kts
